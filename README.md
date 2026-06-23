@@ -7,8 +7,8 @@
 ![Tests](https://img.shields.io/badge/tests-20%20passing-success)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
-🔗 **Live demo:** _coming soon_
-📜 **Contract (Sepolia):** _deploy pending_
+🔗 **Live demo:** https://yield-garden-b7.netlify.app
+📜 **Contracts (Sepolia):** [SeedToken](https://sepolia.etherscan.io/address/0x453B8a25f249E35838444A429A7384c4a6087f79) · [YieldGarden](https://sepolia.etherscan.io/address/0xEC53a51c83b9cC5372312EEaAE0d5BE3193F4b60)
 
 ---
 
