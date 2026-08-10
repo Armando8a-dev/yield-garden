@@ -1,7 +1,89 @@
 @import "tailwindcss";
 
+:root {
+  --leaf: #86efac;      /* living green — what you plant */
+  --leaf-deep: #22c55e;
+  --harvest: #fbbf24;   /* amber — what you harvest (ETH) */
+  --soil: #1a120b;
+  --night: #050b07;
+}
+
+html, body { height: 100%; }
+
 body {
-  background: #0a140a;
-  color: #e3f7e6;
-  font-family: system-ui, sans-serif;
+  color: #e8f2ea;
+  font-family: var(--font-body), system-ui, sans-serif;
+  background: var(--night);
+  overflow-x: hidden;
+}
+
+.font-display { font-family: var(--font-display), Georgia, serif; }
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* ── the sky above the plot ───────────────────────────────────────────── */
+.sky {
+  background:
+    radial-gradient(900px 520px at 50% 88%, rgba(34, 197, 94, 0.16), transparent 62%),
+    radial-gradient(700px 420px at 18% 12%, rgba(251, 191, 36, 0.07), transparent 60%),
+    linear-gradient(180deg, #050b07 0%, #071410 55%, #0b1a12 100%);
+}
+
+/* ── drifting pollen ──────────────────────────────────────────────────── */
+@keyframes drift {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+  10%  { opacity: 0.7; }
+  90%  { opacity: 0.5; }
+  100% { transform: translate(var(--dx, 30px), -110px) scale(1.25); opacity: 0; }
+}
+.pollen {
+  position: absolute;
+  border-radius: 9999px;
+  background: var(--leaf);
+  filter: blur(0.5px);
+  animation: drift var(--dur, 14s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ── the soil bed ─────────────────────────────────────────────────────── */
+.soil {
+  background:
+    linear-gradient(180deg, rgba(26, 18, 11, 0.92), rgba(14, 10, 6, 0.98));
+  border-top: 1px solid rgba(134, 239, 172, 0.16);
+  box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.55);
+}
+/* organic scalloped top edge, like a raised garden bed */
+.soil-crest {
+  height: 16px;
+  background-color: rgba(26, 18, 11, 0.92);
+  -webkit-mask-image: radial-gradient(circle at 12px 16px, black 11px, transparent 11.5px);
+  mask-image: radial-gradient(circle at 12px 16px, black 11px, transparent 11.5px);
+  -webkit-mask-size: 24px 16px;
+  mask-size: 24px 16px;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+}
+
+/* ── plant growth + sway ──────────────────────────────────────────────── */
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.2deg); }
+  50%      { transform: rotate(1.2deg); }
+}
+.sway { animation: sway 7s ease-in-out infinite; transform-origin: 50% 100%; }
+
+@keyframes grow-in {
+  from { transform: scaleY(0); opacity: 0; }
+  to   { transform: scaleY(1); opacity: 1; }
+}
+.grow { animation: grow-in 1.4s cubic-bezier(.22,1,.36,1) both; transform-origin: 50% 100%; }
+
+/* ── harvest dew glow ─────────────────────────────────────────────────── */
+@keyframes dew {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.12); }
+}
+.dew { animation: dew 3.2s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pollen, .sway, .grow, .dew { animation: none; }
+  .grow { transform: none; opacity: 1; }
 }
